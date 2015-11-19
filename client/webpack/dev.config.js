@@ -55,6 +55,10 @@ module.exports = {
     'theme': [
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       './src/theme/theme.js'
+    ],
+    'type': [
+      'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
+      './src/theme/type.js'
     ]
   },
   output: {
