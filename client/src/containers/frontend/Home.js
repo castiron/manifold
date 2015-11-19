@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { RecentProjects } from './';
+import { FilteredProjects } from './';
 import { Texts } from '../../components/frontend';
 import { fetchTexts } from '../../actions/shared/collections';
 
@@ -36,9 +37,10 @@ class Home extends Component {
               <RecentProjects />
             </div>
           </section>
-          <section>
+          <section className="neutral20">
             <div className="container">
               {"Our Projects"}
+              <FilteredProjects />
             </div>
           </section>
         </div>

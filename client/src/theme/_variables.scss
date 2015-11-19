@@ -5,22 +5,29 @@
 // --------------------------------------------------------
 // Neutral Colors
 
-$neutralGray: #e8ecec;
-$neutralGray: #f7f7f7;
+$neutralWhite: #ffffff;
 
-$neutralGray: #c6c6c6;
-$neutralGray: #a09fa0;
-$neutralGray: #7a797b;
-$neutralGray: #707071;
-$neutralGray: #676668;
+// Off Whites
+$neutral10: #e8ecec;
+$neutral20: #f7f7f7;
 
-$neutralOffBlack: #414042;
+$neutral40: #c6c6c6;
+$neutral50: #a09fa0;
+$neutral70: #7a797b;
+$neutral75: #707071;
+$neutral80: #676668;
+
+$neutral90: #414042;
+
+// Separated as this is often used for base template elements (like plain text)
+$neutralOffBlack: $neutral90;
+$neutralBlack: #000000;
 
 // Accent Colors
 $accentPrimary: #52e3ac !default;
 $accentPrimaryPale: #dcf9ee !default;
 
-$accentSecondary: #34a178;
+$accentSecondary: #34a178 !default;
 
 // Measurements
 // Structural measurements used site wide that are kept in one place

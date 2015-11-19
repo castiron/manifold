@@ -32,6 +32,31 @@
   }
 }
 
+// Clearfix
+// $mode accepts 'light' or 'heavy'
+// 'light' is sufficient for clearing floats, while 'heavy' is required to
+// prevent margin collapsing
+// --------------------------
+@mixin clearfix($mode: light) {
+  @if $mode == heavy {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+  @else {
+    &:after {
+      content: " ";
+      display: block;
+      clear: both;
+    }
+  }
+}
+
 
 // Layout
 // --------------------------------------------------------

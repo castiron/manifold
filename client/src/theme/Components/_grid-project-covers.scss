@@ -11,6 +11,8 @@
     width: 16.667%;
     vertical-align: top;
     padding: 0px 1.542%;
+    font-size: 0;
+    // NB: Requires font-size reset if it contains typography
     img {
       width: 100%;
       height: auto;

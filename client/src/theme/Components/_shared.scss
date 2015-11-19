@@ -19,6 +19,12 @@
 
 // Layout
 // --------------------------------------------------------
+section {
+  &.neutral20 {
+    background-color: $neutral20;
+  }
+}
+
 .container {
   @include containerPrototype;
   // Section can be abstracted to more specific section class (or body class) if necessary
