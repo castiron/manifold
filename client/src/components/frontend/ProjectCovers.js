@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 export default class projectCovers extends Component {
 
   static propTypes = {
-    texts: PropTypes.object,
+    projects: PropTypes.array,
   };
 
   static defaultProps = {
@@ -53,7 +53,7 @@ export default class projectCovers extends Component {
                   <img src={project.image} alt={`Click to view ${project.title}`} />
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>

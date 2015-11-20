@@ -18,11 +18,11 @@ class Following extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(stateIgnored) {
   return {};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatchIgnored) {
   return {};
 }
 

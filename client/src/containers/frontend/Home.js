@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { RecentProjects } from './';
 import { FilteredProjects } from './';
-import { Texts } from '../../components/frontend';
 import { fetchTexts } from '../../actions/shared/collections';
 
 
@@ -11,7 +9,6 @@ class Home extends Component {
 
   static propTypes = {
     children: PropTypes.object,
-    texts: PropTypes.object,
     actions: React.PropTypes.shape({
       fetchTexts: React.PropTypes.func.isRequired
     })
@@ -48,15 +45,13 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(stateIgnored) {
   return {
-    texts: state.collections.entities.texts
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatchIgnored) {
   return {
-    actions: bindActionCreators({fetchTexts}, dispatch)
   };
 }
 
