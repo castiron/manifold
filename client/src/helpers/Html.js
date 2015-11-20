@@ -31,9 +31,8 @@ export default class Html extends Component {
           <link rel="shortcut icon" href="/favicon.ico" />
 
           {/*Import fonts from webkit*/}
-          <script src="https://use.typekit.net/mnj5ltf.js"></script>
-          <script src={assets.javascript.type} charSet="UTF-8"/>
-
+          <script src={'https://use.typekit.net/mnj5ltf.js'}></script>
+          <script dangerouslySetInnerHTML={{__html: 'try{Typekit.load({ async: true });}catch(e){}'}} charSet="UTF-8"/>
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
