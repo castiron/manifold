@@ -44,19 +44,19 @@ export default class projectCovers extends Component {
 
   render() {
     return (
-        <nav className="grid-project-covers">
-          <ul>
-            {this.props.projects.map(function(project) {
-              return (
-                  <li key={project.id}>
-                    <Link to={`/browse/project/${project.id}`}>
-                      <img src={project.image} alt={`Click to view ${project.title}`} />
-                    </Link>
-                  </li>
-              )
-            })}
-          </ul>
-        </nav>
+      <nav className="grid-project-covers">
+        <ul>
+          {this.props.projects.map((project) => {
+            return (
+              <li key={project.id}>
+                <Link to={`/browse/project/${project.id}`}>
+                  <img src={project.image} alt={`Click to view ${project.title}`} />
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
     );
   }
 }
