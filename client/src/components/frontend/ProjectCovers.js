@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 // import {Link} from 'react-router';
 
-export default class extends Component {
+export default class projectCovers extends Component {
+
   static propTypes = {
     texts: PropTypes.object,
   };
 
-  constructor() {
-    super();
-    this.stubProjects = [
+  static defaultProps = {
+    projects: [
       {
         title: 'Title',
         url: '#',
@@ -39,14 +39,14 @@ export default class extends Component {
         url: '#',
         image: '/placeholder/browse-pCover-parikka01.jpg'
       }
-    ];
+    ]
   }
 
   render() {
     return (
         <nav className="grid-project-covers">
           <ul>
-            {this.stubProjects.map(function(project) {
+            {this.props.projects.map(function(project) {
               return (
                   <li>
                     <a href={project.url}>
