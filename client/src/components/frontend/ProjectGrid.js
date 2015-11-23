@@ -23,6 +23,8 @@ export default class ProjectGrid extends Component {
               <li>
                 <ProjectThumb makers={this.props.makers}
                               project={project}
+                              /* This works, change to true to see boolean error */
+                              showMeta={false}
                 />
               </li>
             );

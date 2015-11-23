@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Link} from 'react-router';
+import {ProjectThumb} from './';
 
 export default class ProjectCovers extends Component {
 
@@ -13,10 +13,6 @@ export default class ProjectCovers extends Component {
     return this.props.projects[id];
   }
 
-  lookupMaker(id) {
-    return this.props.makers[id];
-  }
-
   render() {
     return (
       <nav className="grid-project-covers">
@@ -24,11 +20,10 @@ export default class ProjectCovers extends Component {
           {this.props.entities.map((projectId) => {
             const project = this.lookupProject(projectId);
             return (
-              <li key={project.id}>
-                <Link to={`/browse/project/${project.id}`}>
-                  <img src={project.attributes.coverUrl}
-                       alt={`Click to view ${project.attributes.title}`} />
-                </Link>
+              <li>
+                <ProjectThumb makers={this.props.makers}
+                              project={project}
+                />
               </li>
             );
           })}

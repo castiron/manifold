@@ -14,6 +14,9 @@
     display: block;
     padding: 26px;
     text-decoration: none;
+    .figure-wrapper {
+      max-width: 135px;
+    }
     // Figure
     figure {
       max-width: 100%;
