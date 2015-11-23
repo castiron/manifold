@@ -37,3 +37,24 @@ section {
 .footer-browse {
   @include containerPrototype;
 }
+
+
+// Type
+// --------------------------------------------------------
+.section-heading {
+  @include heading-primary;
+  color: $neutral80;
+  &.manicon:before {
+    display: inline-block;
+    color: $neutral40;
+    vertical-align: middle;
+  }
+  &.manicon-new-round:before {
+    font-size: 63px;
+    color: $accentPrimary;
+    margin-right: 13px;
+  }
+  &.manicon-books-on-shelf:before {
+    margin-right: 24px;
+  }
+}
