@@ -33,6 +33,8 @@ $accentSecondary: #34a178 !default;
 // Measurements
 // Structural measurements used site wide that are kept in one place
 // --------------------------------------------------------
+$baseLineHeight: 1.2;
+
 $containerWidthFull: 1235px; // Maximum container width of 1135 plus maximum gutter padding
 $containerPaddingFull: 50px;
 
@@ -43,7 +45,7 @@ $containerPaddingFull: 50px;
 // $light: 200;
 // $book: 300;
 $regular: 400;
-// $medium: 600;
+$semibold: 600;
 // $bold: 700;
 
 // Responsive Breakpoints

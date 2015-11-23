@@ -43,11 +43,30 @@ $type20: 12px;
 
 // Headings
 // --------------------------------------------------------
-@mixin heading-primary {
-  @include template-head;
+@mixin headingPrimary {
+  @include templateHead;
   font-size: $type120;
   font-weight: $regular;
   line-height: 1.32;
   margin-top: 0;
   margin-bottom: 75px;
+}
+
+@mixin headingTertiary {
+  @include templateHead;
+  font-size: $type70;
+  font-weight: $semibold;
+  margin-top: 0;
+}
+
+
+// Utility (Browser UI, buttons, etc.)
+// --------------------------------------------------------
+@mixin utilityPrimary {
+  @include templateHead;
+  font-weight: $semibold;
+  text-transform: uppercase;
+  // This is the base size, there may be variation from
+  // component to component
+  font-size: $type50;
 }

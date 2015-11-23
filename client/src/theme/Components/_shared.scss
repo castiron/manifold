@@ -14,8 +14,9 @@
 // - Navigation Lists
 // - Grids
 // - Buttons/Links
+// - Browser UI
 // - Tables
-// - Forms
+// - Form Layout
 
 // Layout
 // --------------------------------------------------------
@@ -42,19 +43,29 @@ section {
 // Type
 // --------------------------------------------------------
 .section-heading {
-  @include heading-primary;
+  @include headingPrimary;
   color: $neutral80;
-  &.manicon:before {
+  .manicon:before {
     display: inline-block;
     color: $neutral40;
     vertical-align: middle;
   }
-  &.manicon-new-round:before {
+  .manicon-new-round:before {
     font-size: 63px;
     color: $accentPrimary;
     margin-right: 13px;
   }
-  &.manicon-books-on-shelf:before {
+  .manicon-books-on-shelf:before {
     margin-right: 24px;
+  }
+}
+
+
+// Browser UI (Selects, dropdowns, inputs, etc.)
+// --------------------------------------------------------
+.select-browse {
+  @include select-styled;
+  select {
+    min-width: 310px;
   }
 }

@@ -28,6 +28,6 @@ body {
   // @include font-body;
   font-size: 1em;
   font-weight: $regular;
-  line-height: 1.2;
+  line-height: $baseLineHeight;
   // color: $something;
 }

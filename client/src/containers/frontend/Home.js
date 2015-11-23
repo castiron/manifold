@@ -43,7 +43,10 @@ class Home extends Component {
         <div>
           <section>
             <div className="container">
-              {"Featured Projects"}
+              <h4 className="section-heading">
+                <i className="manicon manicon-new-round"></i>
+                {'Featured Projects'}
+              </h4>
               <ProjectCovers makers={this.props.makers}
                              projects={this.props.projects}
                              entities={this.props.featuredProjects}
@@ -52,9 +55,15 @@ class Home extends Component {
           </section>
           <section className="neutral20">
             <div className="container">
-              {'Filtered Projects: Note that we\'re using a different dumb component to ' +
-              'render this. Note, too, that the parent component delivers all the data ' +
-              'the child component needs to render (which is what keeps the child dumb)'}
+              <h4 className="section-heading">
+                <i className="manicon manicon-books-on-shelf"></i>
+                {'Filtered Projects'}
+              </h4>
+              {/*
+                Note that we're using a different dumb component to render this.
+                Note, too, that the parent component delivers all the data the child component needs
+                to render (which is what keeps the child dumb)'
+              */}
               <ProjectFilters updateAction={this.props.actions.setProjectFilters} />
               <ProjectGrid makers={this.props.makers}
                              projects={this.props.projects}

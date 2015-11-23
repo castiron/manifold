@@ -28,7 +28,6 @@ export default class ProjectCovers extends Component {
                 <Link to={`/browse/project/${project.id}`}>
                   <img src={project.attributes.coverUrl}
                        alt={`Click to view ${project.attributes.title}`} />
-                  <span style={{display: 'block', fontSize: 12}}>{project.attributes.title}</span>
                 </Link>
               </li>
             );

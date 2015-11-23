@@ -19,24 +19,35 @@ export default class ProjectGrid extends Component {
 
   render() {
     return (
-      <nav className="grid-project-covers">
+      <nav className="grid-project">
         <ul>
           {this.props.entities.map((projectId) => {
             const project = this.lookupProject(projectId);
             return (
               <li key={project.id}>
                 <Link to={`/browse/project/${project.id}`}>
-                  <img src={project.attributes.coverUrl}
-                       alt={`Click to view ${project.attributes.title}`} />
-                  <span style={{display: 'block', fontSize: 12}}>{project.attributes.title}</span>
-                  {project.relationships.creators.data.map((makerRel) => {
-                    const maker = this.lookupMaker(makerRel.id);
-                    return (
-                     <span key={maker.id} style={{marginTop: 15, marginBottom: 10, display: 'block', fontSize: 12}}>
-                       {maker.attributes.name}
-                     </span>
-                    );
-                  })}
+                  {/* Figure wrapper, controls maximum width of figure */}
+                  <div style={{maxWidth: 135}}>
+                    <figure>
+                      <img src={project.attributes.coverUrl}
+                           alt={`Click to view ${project.attributes.title}`} />
+                      <i className="manicon manicon-plus"></i>
+                    </figure>
+                  </div>
+                  <h3 className="title">{project.attributes.title}</h3>
+                  <div className="makers">
+                    {project.relationships.creators.data.map((makerRel) => {
+                      const maker = this.lookupMaker(makerRel.id);
+                      return (
+                       <span key={maker.id}>
+                         {maker.attributes.name}
+                       </span>
+                      );
+                    })}
+                  </div>
+                  <div className="date">
+                    Published June, 2016
+                  </div>
                 </Link>
               </li>
             );

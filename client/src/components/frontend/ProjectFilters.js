@@ -24,12 +24,13 @@ export default class ProjectFilters extends Component {
 
   render() {
     return (
-      <div style={{marginTop: 15, marginBottom: 15}}>
+      <div className="select-browse" style={{marginBottom: 93}}>
         <select onChange={this.filterChange.bind(this)} >
           <option value="all">Show All</option>
           <option value="featured">Featured</option>
           <option value="notFeatured">Not Featured</option>
         </select>
+        <i className="manicon manicon-caret-down"></i>
       </div>
     );
   }

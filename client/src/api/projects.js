@@ -14,7 +14,7 @@ export default {
     return apiClient('/api/v1/projects.json', query, page);
   },
 
-  featuredProjects(limit = 5) {
+  featuredProjects(limit = 6) {
     const query = {
       filter: { featured: true },
       page: { limit: limit }
