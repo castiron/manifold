@@ -1,16 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { RecentProjects } from './';
-import { FilteredProjects } from './';
-import { fetchTexts } from '../../actions/shared/collections';
-
+import { ProjectCovers, ProjectGrid, ProjectFilters } from '../../components/frontend';
+import { bindActionCreators } from 'redux';
+import { fetchFilteredProjects, fetchFeaturedProjects } from '../../actions/shared/collections';
+import { setProjectFilters } from '../../actions/frontend/ui';
 
 class Home extends Component {
 
   static propTypes = {
     children: PropTypes.object,
+    makers: PropTypes.object,
+    projects: PropTypes.object,
+    featuredProjects: PropTypes.array,
+    filteredProjects: PropTypes.array,
+    projectFilters: PropTypes.object,
     actions: React.PropTypes.shape({
-      fetchTexts: React.PropTypes.func.isRequired
+      fetchFilteredProjects: React.PropTypes.func.isRequired,
+      setProjectFilters: React.PropTypes.func.isRequired
     })
   };
 
@@ -18,11 +24,18 @@ class Home extends Component {
     store: PropTypes.object.isRequired
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.projectFilters !== this.props.projectFilters) {
+      this.props.actions.fetchFilteredProjects({filter: this.props.projectFilters});
+    }
+  }
+
   static fetchData(getState, dispatch) {
-    // If we had to load from mutiple endpoints, we'd want to
-    // return Promise.all([an array of promises]), but instead
-    // we can return one promise.
-    return dispatch(fetchTexts());
+    const state = getState();
+    return Promise.all([
+      dispatch(fetchFilteredProjects({filter: state.ui.projectFilters})),
+      dispatch(fetchFeaturedProjects())
+    ]);
   }
 
   render() {
@@ -30,14 +43,23 @@ class Home extends Component {
         <div>
           <section>
             <div className="container">
-              {"Recent Projects"}
-              <RecentProjects />
+              {"Featured Projects"}
+              <ProjectCovers makers={this.props.makers}
+                             projects={this.props.projects}
+                             entities={this.props.featuredProjects}
+              />
             </div>
           </section>
           <section className="neutral20">
             <div className="container">
-              {"Our Projects"}
-              <FilteredProjects />
+              {'Filtered Projects: Note that we\'re using a different dumb component to ' +
+              'render this. Note, too, that the parent component delivers all the data ' +
+              'the child component needs to render (which is what keeps the child dumb)'}
+              <ProjectFilters updateAction={this.props.actions.fetchFilteredProjects} />
+              <ProjectGrid makers={this.props.makers}
+                             projects={this.props.projects}
+                             entities={this.props.filteredProjects}
+              />
             </div>
           </section>
         </div>
@@ -45,16 +67,21 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(stateIgnored) {
+function mapStateToProps(state) {
   return {
+    filteredProjects: state.collections.results.fetchFilteredProjects.entities,
+    featuredProjects: state.collections.results.fetchFeaturedProjects.entities,
+    projectFilters: state.ui.projectFilters,
+    projects: state.collections.entities.projects,
+    makers: state.collections.entities.makers
   };
 }
 
-function mapDispatchToProps(dispatchIgnored) {
+function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators({fetchFilteredProjects, setProjectFilters}, dispatch)
   };
 }
-
 
 export default connect(
   mapStateToProps,

@@ -1,56 +1,34 @@
 import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router';
 
-export default class projectCovers extends Component {
+export default class ProjectCovers extends Component {
 
   static propTypes = {
-    projects: PropTypes.array,
+    entities: PropTypes.array,
+    projects: PropTypes.object,
+    makers: PropTypes.object
   };
 
-  static defaultProps = {
-    projects: [
-      {
-        id: 1,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-blanchot01.jpg'
-      },
-      {
-        id: 2,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-grusin01.jpg'
-      },
-      {
-        id: 3,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-nornes01.jpg'
-      },
-      {
-        id: 4,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-bogost01.jpg'
-      },
-      {
-        id: 5,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-maoilearca01.jpg'
-      },
-      {
-        id: 6,
-        title: 'Title',
-        image: '/placeholder/browse-pCover-parikka01.jpg'
-      }
-    ]
+  lookupProject(id) {
+    return this.props.projects[id];
+  }
+
+  lookupMaker(id) {
+    return this.props.makers[id];
   }
 
   render() {
     return (
       <nav className="grid-project-covers">
         <ul>
-          {this.props.projects.map((project) => {
+          {this.props.entities.map((projectId) => {
+            const project = this.lookupProject(projectId);
             return (
               <li key={project.id}>
                 <Link to={`/browse/project/${project.id}`}>
-                  <img src={project.image} alt={`Click to view ${project.title}`} />
+                  <img src={project.attributes.coverUrl}
+                       alt={`Click to view ${project.attributes.title}`} />
+                  <span style={{display: 'block', fontSize: 12}}>{project.attributes.title}</span>
                 </Link>
               </li>
             );

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { ProjectGrid } from '../../components/frontend';
+import { ProjectCovers } from './';
 // import {Link} from 'react-router';
 
-export default class extends Component {
+export default class RecentProjects extends Component {
 
   static propTypes = {
     texts: PropTypes.object
@@ -11,7 +11,7 @@ export default class extends Component {
   render() {
     return (
         <div>
-          <ProjectGrid />
+          <ProjectCovers />
         </div>
     );
   }

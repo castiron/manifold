@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import {Link} from 'react-router';
 
-export default class extends Component {
+export default class Footer extends Component {
 
   static propTypes = {};
 
