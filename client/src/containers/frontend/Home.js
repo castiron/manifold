@@ -55,7 +55,7 @@ class Home extends Component {
               {'Filtered Projects: Note that we\'re using a different dumb component to ' +
               'render this. Note, too, that the parent component delivers all the data ' +
               'the child component needs to render (which is what keeps the child dumb)'}
-              <ProjectFilters updateAction={this.props.actions.fetchFilteredProjects} />
+              <ProjectFilters updateAction={this.props.actions.setProjectFilters} />
               <ProjectGrid makers={this.props.makers}
                              projects={this.props.projects}
                              entities={this.props.filteredProjects}

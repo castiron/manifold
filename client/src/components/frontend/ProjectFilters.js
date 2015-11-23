@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 export default class ProjectFilters extends Component {
 
   static propTypes = {
-    updateAction: PropTypes.function
+    updateAction: PropTypes.func
   };
 
   filterChange(event) {
@@ -19,7 +19,7 @@ export default class ProjectFilters extends Component {
         filter = {};
         break;
     }
-    this.props.updateAction({filter: filter});
+    this.props.updateAction(filter);
   }
 
   render() {
