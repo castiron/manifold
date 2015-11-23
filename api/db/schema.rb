@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120195625) do
+ActiveRecord::Schema.define(version: 20151123173103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20151120195625) do
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
-    t.boolean  "published",          default: false, null: false
+    t.boolean  "published"
     t.datetime "published_datetime"
     t.text     "description"
     t.string   "cover_file_name"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(version: 20151120195625) do
     t.text     "page_list"
     t.text     "landmarks"
     t.text     "structure_titles"
-    t.integer  "project_id"
   end
 
 end
