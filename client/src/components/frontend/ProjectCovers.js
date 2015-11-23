@@ -14,6 +14,7 @@ export default class ProjectCovers extends Component {
   }
 
   render() {
+    const hideMeta = true;
     return (
       <nav className="grid-project-covers">
         <ul>
@@ -23,6 +24,7 @@ export default class ProjectCovers extends Component {
               <li>
                 <ProjectThumb makers={this.props.makers}
                               project={project}
+                              hideMeta="{hideMeta}"
                 />
               </li>
             );

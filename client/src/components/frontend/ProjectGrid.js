@@ -14,6 +14,7 @@ export default class ProjectGrid extends Component {
   }
 
   render() {
+    const hideDesc = true;
     return (
       <nav className="grid-project">
         <ul>
@@ -23,8 +24,7 @@ export default class ProjectGrid extends Component {
               <li>
                 <ProjectThumb makers={this.props.makers}
                               project={project}
-                              /* This works, change to true to see boolean error */
-                              showMeta={false}
+                              hideDesc={hideDesc}
                 />
               </li>
             );

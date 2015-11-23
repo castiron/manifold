@@ -5,15 +5,15 @@ export default class ProjectGrid extends Component {
   static propTypes = {
     project: PropTypes.object,
     makers: PropTypes.object,
-    showMeta: PropTypes.bool,
-    showDate: PropTypes.bool,
-    showDescription: PropTypes.bool
+    hideMeta: PropTypes.bool,
+    hideDate: PropTypes.bool,
+    hideDesc: PropTypes.bool
   };
 
   static defaultProps = {
-    showMeta: true,
-    showDate: true,
-    showDescription: false
+    hideMeta: false,
+    hideDate: false,
+    hideDesc: false
   };
 
   lookupMaker(id) {
@@ -24,29 +24,31 @@ export default class ProjectGrid extends Component {
     const project = this.props.project;
 
     let projectDate;
-    if (this.props.showDate) {
+    if (this.props.hideDate) {
+      projectDate = '';
+    } else {
       projectDate = (
         <div className="date">
           {'Published June, 2016'}
         </div>
       );
-    } else {
-      projectDate = '';
     }
 
     let projectDesc;
-    if (this.props.showDescription) {
+    if (this.props.hideDesc) {
+      projectDesc = '';
+    } else {
       projectDesc = (
         <p>
-          {project.description}
+          {project.attributes.description}
         </p>
       );
-    } else {
-      projectDesc = '';
     }
 
     let projectMeta;
-    if (this.props.showMeta) {
+    if (this.props.hideMeta) {
+      projectMeta = '';
+    } else {
       projectMeta = (
         <div className="meta">
           <h3 className="title">{project.attributes.title}</h3>
@@ -65,8 +67,6 @@ export default class ProjectGrid extends Component {
           {projectDesc}
         </div>
       );
-    } else {
-      projectMeta = '';
     }
 
     return (
