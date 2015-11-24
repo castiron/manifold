@@ -82,6 +82,31 @@ section {
   @include buttonUnstyled;
 }
 
+// Large transparent button with icon on the left
+.button-icon-primary {
+  @include buttonUnstyled;
+  @include utilityPrimary;
+  font-size: $type60;
+  font-weight: $bold;
+  color: $neutral80;
+  border: 3px solid $accentPrimary;
+  padding: 21px 40px 20px;
+  line-height: 44px;
+  .manicon {
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 1;
+    width: auto;
+    margin-right: 14px;
+  }
+  .manicon-books-on-shelf {
+    font-size: 44px;
+  }
+  .manicon-books-with-glasses {
+    font-size: 35px;
+  }
+}
+
 
 // Browser UI (Selects, dropdowns, inputs, etc.)
 // --------------------------------------------------------

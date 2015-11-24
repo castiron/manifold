@@ -71,6 +71,20 @@ class Home extends Component {
               />
             </div>
           </section>
+          <section>
+            <div className="container">
+              <nav className="button-nav">
+                <button className="button-icon-primary">
+                  <i className="manicon manicon-books-on-shelf"></i>
+                  See more projects
+                </button>
+                <button className="button-icon-primary">
+                  <i className="manicon manicon-books-with-glasses"></i>
+                  Projects You're following
+                </button>
+              </nav>
+            </div>
+          </section>
         </div>
     );
   }
