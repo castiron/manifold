@@ -24,6 +24,18 @@
 // - Browser UI
 // - Tables
 
+
+// Buttons
+// --------------------------------------------------------
+@mixin buttonUnstyled {
+  // TODO: This should be auto-prefixed
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+
 // Browser UI
 // --------------------------------------------------------
 // Styled select

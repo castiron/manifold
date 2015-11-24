@@ -18,6 +18,20 @@
 // - Tables
 // - Form Layout
 
+// Utilities
+// --------------------------------------------------------
+.screen-reader-text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
 // Layout
 // --------------------------------------------------------
 section {
@@ -58,6 +72,14 @@ section {
   .manicon-books-on-shelf:before {
     margin-right: 24px;
   }
+}
+
+
+// Buttons/Links
+// --------------------------------------------------------
+// Reset bare button class for using icons only
+.button-bare-icon {
+  @include buttonUnstyled;
 }
 
 
