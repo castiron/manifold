@@ -43,10 +43,12 @@ class Home extends Component {
         <div>
           <section>
             <div className="container">
-              <h4 className="section-heading">
-                <i className="manicon manicon-new-round"></i>
-                {'Featured Projects'}
-              </h4>
+              <header className="rel">
+                <h4 className="section-heading">
+                  <i className="manicon manicon-new-round"></i>
+                  {'Featured Projects'}
+                </h4>
+              </header>
               <ProjectCovers makers={this.props.makers}
                              projects={this.props.projects}
                              entities={this.props.featuredProjects}
@@ -55,10 +57,12 @@ class Home extends Component {
           </section>
           <section className="neutral20">
             <div className="container">
-              <h4 className="section-heading">
-                <i className="manicon manicon-books-on-shelf"></i>
-                {'Filtered Projects'}
-              </h4>
+              <header className="rel">
+                <h4 className="section-heading">
+                  <i className="manicon manicon-books-on-shelf"></i>
+                  {'Filtered Projects'}
+                </h4>
+              </header>
               {/*
                 Note that we're using a different dumb component to render this.
                 Note, too, that the parent component delivers all the data the child component needs

@@ -21,12 +21,12 @@ export default class Header extends Component {
         <nav className="text-nav">
           <ul>
             <li className="active">
-              <Link to="{`/browse/`}">
+              <Link to={`/browse/`}>
                 Browse
               </Link>
             </li>
             <li>
-              <Link to="{`/following/`}">
+              <Link to={`/browse/following/`}>
                 Following
               </Link>
             </li>

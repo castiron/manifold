@@ -39,7 +39,7 @@ export default class ProjectGrid extends Component {
       projectDesc = '';
     } else {
       projectDesc = (
-        <p>
+        <p className="description">
           {project.attributes.description}
         </p>
       );

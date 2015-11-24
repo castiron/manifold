@@ -1,23 +1,26 @@
 // <nav> around <ul>
-.grid-project {
-  margin: -26px -26px 0px -26px;
+.grid-project-summary {
   ul {
     @include listHorizontal;
     display: block;
     width: 100%;
+    margin-right: -5.5%;
+    margin-left: -5.5%;
     li {
-      width: 25%;
+      width: 33.333%;
       vertical-align: top;
       // Ensures flush grid elements, requires reset for any child elements
       font-size: 0;
+      padding-right: 5.5%;
+      padding-bottom: 26px;
+      padding-left: 5.5%;
     }
   }
   a {
     display: block;
-    padding: 26px;
     text-decoration: none;
     .figure-wrapper {
-      max-width: 135px;
+      max-width: 195px;
     }
     // Figure
     figure {
@@ -47,14 +50,8 @@
         padding-top: 12px;
         border-radius: 100%;
         position: absolute;
-        top: 10.769%;
+        top: 7.018%;
         left: -18px;
-      }
-    }
-    &:hover {
-      background-color: $neutral10;
-      img {
-        border-color: $accentPrimary;
       }
     }
     // Meta data
@@ -74,6 +71,12 @@
       font-size: $type60;
       font-style: italic;
       color: $neutral75;
+    }
+    .description {
+      @include templateCopy;
+      font-size: $type70;
+      font-style: italic;
+      color: $accentSecondary;
     }
   }
 }
