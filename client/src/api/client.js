@@ -5,7 +5,7 @@ import qs from 'qs';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-export default function apiClient(endpoint, query = {}, page = {}) {
+export function lowLevelApiClient(endpoint, method, query = {}, page = {}) {
   let adjustedEndpoint;
   if (__SERVER__) {
     adjustedEndpoint = `http://${(process.env.HOST || 'localhost')}:${config.clientPort}${endpoint}`;
@@ -13,18 +13,25 @@ export default function apiClient(endpoint, query = {}, page = {}) {
     adjustedEndpoint = endpoint;
   }
   adjustedEndpoint = adjustedEndpoint + '?' + qs.stringify(query) + qs.stringify(page);
-  return fetch(adjustedEndpoint)
+  const fetchOptions = {
+    method: method.toLowerCase()
+  };
+  return fetch(adjustedEndpoint, fetchOptions);
+}
+
+export default function apiClient(endpoint, method, query = {}, page = {}) {
+  let fetchPromise = lowLevelApiClient(endpoint, method, query, page);
+  return fetchPromise
     .then(response => {
       if (!response.ok) {
         return Promise.reject(response);
       }
       return response.json().then(json => {
-        return { json, response };
+        return {json, response};
       }, () => {
-        return { response };
+        return {response};
       });
-    }
-    ).then(({ json }) => {
+    }).then(({ json }) => {
       const cleanedData = camelizeKeys(json.data);
       const entities = {};
       const results = [];
@@ -52,5 +59,4 @@ export default function apiClient(endpoint, query = {}, page = {}) {
       return out;
     });
 }
-
 

@@ -106,7 +106,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({fetchFilteredProjects, setProjectFilters}, dispatch)
+    actions: bindActionCreators({fetchFilteredProjects, fetchFeaturedProjects, setProjectFilters}, dispatch)
   };
 }
 
