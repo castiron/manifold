@@ -4,7 +4,7 @@ import { camelizeKeys } from 'humps';
 export default {
 
   createToken(email, password) {
-    const results = lowLevelApiClient('/api/v1/tokens', 'POST', {email, password})
+    const results = lowLevelApiClient('/api/v1/tokens', 'POST', {params: {email, password}})
       .then(response => {
         if (!response.ok) {
           return Promise.reject(response);

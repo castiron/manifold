@@ -26,16 +26,17 @@ class Following extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    let { dispatch } = this.props
     if (prevProps.projectFilters !== this.props.projectFilters) {
-      this.props.actions.fetchFilteredProjects({filter: this.props.projectFilters});
+      dispatch(fetchFilteredProjects(this.props.projectFilters));
     }
   }
 
   static fetchData(getState, dispatch) {
     const state = getState();
     return Promise.all([
-      dispatch(fetchFilteredProjects({filter: state.ui.projectFilters})),
-      dispatch(fetchFeaturedProjects())
+      fetchFilteredProjects(state.ui.projectFilters)(dispatch, getState),
+      fetchFeaturedProjects()(dispatch, getState)
     ]);
   }
 
@@ -50,7 +51,7 @@ class Following extends Component {
                   {'Projects You\'re Following'}
                 </h4>
                 <div className="section-heading-utility-right">
-                  <ProjectFilters updateAction={this.props.actions.setProjectFilters} />
+                  <ProjectFilters updateAction={bindActionCreators(setProjectFilters, this.props.dispatch)} />
                 </div>
               </header>
               <ProjectGrid makers={this.props.makers}
@@ -107,13 +108,6 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({fetchFilteredProjects, setProjectFilters}, dispatch)
-  };
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Following);

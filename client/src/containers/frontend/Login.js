@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { startLogin } from '../../actions/shared/authentication';
-import { fetchFeaturedProjects } from '../../actions/shared/collections';
+import { startLogin, startLogout } from '../../actions/shared/authentication';
 
 class Login extends Component {
 
@@ -11,45 +10,67 @@ class Login extends Component {
 
   updatePassword = (event) => {
     this.setState(Object.assign({}, this.state, {password: event.target.value}));
-  }
+  };
 
   updateEmail = (event) => {
     this.setState(Object.assign({}, this.state, {email: event.target.value}));
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleLogin = (event) => {
     event.preventDefault();
-    this.props.actions.startLogin(this.state.email, this.state.password);
-  }
+    const { dispatch } = this.props;
+    dispatch(startLogin(this.state.email, this.state.password));
+  };
 
-  handleClick = (event) => {
+  handleLogout = (event) => {
     event.preventDefault();
-    this.props.actions.fetchFeaturedProjects();
-  }
+    const { dispatch } = this.props;
+    dispatch(startLogout());
+  };
+
+  loginUI = () => {
+    return (
+      <div className="container">
+        <header className="rel">
+          <h4 className="section-heading">
+            <i className="manicon manicon-lamp"></i>
+            {'Login'}
+          </h4>
+        </header>
+        <form method="post" onSubmit={this.handleLogin}>
+          <label htmlFor="login-email">Email</label><br />
+          <input value={this.state.email} onChange={this.updateEmail} id="login-email" type="text" /><br /><br />
+          <label htmlFor="login-password">Password</label><br />
+          <input value={this.state.password} onChange={this.updatePassword} id="login-password" type="password" /><br /><br />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    )
+  };
+
+  logoutUI = () => {
+    return (
+      <div className="container">
+        <header className="rel">
+          <h4 className="section-heading">
+            <i className="manicon manicon-lamp"></i>
+            {'Logout'}
+          </h4>
+        </header>
+        <form method="post" onSubmit={this.handleLogout}>
+          { this.props.authentication.user ? <div style={{marginBottom: 20}}>{`You are logged in as ${this.props.authentication.user.email}`}</div> : ''}
+          <input type="submit" value="Logout" />
+        </form>
+      </div>
+
+    )
+  };
 
   render = () => {
     return (
       <div>
         <section>
-          <div className="container">
-            <header className="rel">
-              <h4 className="section-heading">
-                <i className="manicon manicon-lamp"></i>
-                {'Login'}
-              </h4>
-            </header>
-            <form method="post" onSubmit={this.handleSubmit}>
-              { this.props.authentication.user ? <div style={{marginBottom: 20}}>{`You are logged in as ${this.props.authentication.user.email}`}</div> : ''}
-              <label htmlFor="login-email">Email</label><br />
-              <input value={this.state.email} onChange={this.updateEmail} id="login-email" type="text" /><br /><br />
-              <label htmlFor="login-password">Password</label><br />
-              <input value={this.state.password} onChange={this.updatePassword} id="login-password" type="password" /><br /><br />
-              <input type="submit" value="Login" />
-            </form>
-            <br /><br />
-            <button onClick={this.handleClick}>Load projects</button>
-          </div>
-
+          {this.props.authentication.authToken == null ? this.loginUI() : this.logoutUI()}
         </section>
       </div>
     );
@@ -62,13 +83,6 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({startLogin, fetchFeaturedProjects}, dispatch)
-  };
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Login);

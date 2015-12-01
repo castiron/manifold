@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProjectCovers, ProjectGrid, ProjectFilters } from '../../components/frontend';
 import { bindActionCreators } from 'redux';
-import { fetchFilteredProjects, fetchFeaturedProjects } from '../../actions/shared/collections';
+import { fetchFilteredProjects, fetchFeaturedProjects, testAction } from '../../actions/shared/collections';
 import { setProjectFilters } from '../../actions/frontend/ui';
 
 class Home extends Component {
@@ -25,16 +25,17 @@ class Home extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    let { dispatch } = this.props
     if (prevProps.projectFilters !== this.props.projectFilters) {
-      this.props.actions.fetchFilteredProjects({filter: this.props.projectFilters});
+      dispatch(fetchFilteredProjects(this.props.projectFilters));
     }
   }
 
   static fetchData(getState, dispatch) {
     const state = getState();
     return Promise.all([
-      dispatch(fetchFilteredProjects({filter: state.ui.projectFilters})),
-      dispatch(fetchFeaturedProjects())
+      fetchFilteredProjects(state.ui.projectFilters)(dispatch, getState),
+      fetchFeaturedProjects()(dispatch, getState)
     ]);
   }
 
@@ -68,7 +69,7 @@ class Home extends Component {
                 Note, too, that the parent component delivers all the data the child component needs
                 to render (which is what keeps the child dumb)'
               */}
-              <ProjectFilters updateAction={this.props.actions.setProjectFilters} />
+              <ProjectFilters updateAction={bindActionCreators(setProjectFilters, this.props.dispatch)} />
               <ProjectGrid makers={this.props.makers}
                              projects={this.props.projects}
                              entities={this.props.filteredProjects}
@@ -104,14 +105,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({fetchFilteredProjects, fetchFeaturedProjects, setProjectFilters}, dispatch)
-  };
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Home);
 

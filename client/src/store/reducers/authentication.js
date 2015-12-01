@@ -10,6 +10,11 @@ function startLogin(state, action) {
   return Object.assign({}, state, newState);
 }
 
+function startLogout(state, action) {
+  return Object.assign({}, initialState);
+}
+
 export default handleActions({
-  START_LOGIN: startLogin
+  START_LOGIN: startLogin,
+  START_LOGOUT: startLogout
 }, initialState);

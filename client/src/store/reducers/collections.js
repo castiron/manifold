@@ -49,8 +49,9 @@ const fetch = {
     };
     return Object.assign({}, state, newState);
   },
-  throw(stateIgnored, actionIgnored) {
+  throw(state, actionIgnored) {
     // This should be called if the API promise fails.
+    return state;
   }
 };
 
@@ -58,5 +59,11 @@ const handlers = {};
 collectionActions.forEach((action) => {
   handlers[action] = fetch;
 });
+
+handlers.START_LOGOUT = {
+  next(state, action) {
+    return Object.assign({}, initialState);
+  }
+};
 
 export default handleActions(handlers, initialState);
