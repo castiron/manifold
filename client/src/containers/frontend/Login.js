@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { startLogin, startLogout } from '../../actions/shared/authentication';
 
 class Login extends Component {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    authentication: React.PropTypes.shape({
+      authToken: React.PropTypes.string,
+      user: React.PropTypes.object
+    })
+  };
 
   // TODO: Remove this at some future point
   state = {email: 'admin@manifold.dev', password: 'manifold'};
@@ -45,7 +52,7 @@ class Login extends Component {
           <input type="submit" value="Login" />
         </form>
       </div>
-    )
+    );
   };
 
   logoutUI = () => {
@@ -62,15 +69,14 @@ class Login extends Component {
           <input type="submit" value="Logout" />
         </form>
       </div>
-
-    )
+    );
   };
 
   render = () => {
     return (
       <div>
         <section>
-          {this.props.authentication.authToken == null ? this.loginUI() : this.logoutUI()}
+          {this.props.authentication.authToken === null ? this.loginUI() : this.logoutUI()}
         </section>
       </div>
     );

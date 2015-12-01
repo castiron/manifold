@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ProjectCovers, ProjectGrid, ProjectFilters } from '../../components/frontend';
 import { bindActionCreators } from 'redux';
-import { fetchFilteredProjects, fetchFeaturedProjects, testAction } from '../../actions/shared/collections';
+import { fetchFilteredProjects, fetchFeaturedProjects } from '../../actions/shared/collections';
 import { setProjectFilters } from '../../actions/frontend/ui';
 
 class Home extends Component {
@@ -14,10 +14,7 @@ class Home extends Component {
     featuredProjects: PropTypes.array,
     filteredProjects: PropTypes.array,
     projectFilters: PropTypes.object,
-    actions: React.PropTypes.shape({
-      fetchFilteredProjects: React.PropTypes.func.isRequired,
-      setProjectFilters: React.PropTypes.func.isRequired
-    })
+    dispatch: PropTypes.func.isRequired
   };
 
   static contextTypes = {
@@ -25,7 +22,7 @@ class Home extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    let { dispatch } = this.props
+    const { dispatch } = this.props;
     if (prevProps.projectFilters !== this.props.projectFilters) {
       dispatch(fetchFilteredProjects(this.props.projectFilters));
     }

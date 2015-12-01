@@ -61,7 +61,7 @@ collectionActions.forEach((action) => {
 });
 
 handlers.START_LOGOUT = {
-  next(state, action) {
+  next(stateIgnored, actionIgnored) {
     return Object.assign({}, initialState);
   }
 };

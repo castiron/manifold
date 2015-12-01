@@ -6,11 +6,11 @@ const initialState = {
 };
 
 function startLogin(state, action) {
-  const newState = {authToken: action.payload.authToken, user: action.payload.user}
+  const newState = {authToken: action.payload.authToken, user: action.payload.user};
   return Object.assign({}, state, newState);
 }
 
-function startLogout(state, action) {
+function startLogout(stateIgnored, actionIgnored) {
   return Object.assign({}, initialState);
 }
 

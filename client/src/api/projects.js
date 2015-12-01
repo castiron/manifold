@@ -7,7 +7,7 @@ export default {
       options: {
         params: {filter, page}
       }
-    }
+    };
   },
 
   project(id) {
@@ -16,7 +16,7 @@ export default {
       method: 'GET',
       options: {
       }
-    }
+    };
   },
 
   filteredProjects(filter = {}, page = {}) {
@@ -26,7 +26,7 @@ export default {
       options: {
         params: {filter, page}
       }
-    }
+    };
   },
 
   featuredProjects(limit = 6) {
@@ -38,7 +38,7 @@ export default {
       options: {
         params: {filter, page}
       }
-    }
+    };
   },
 
   testProjects(filter = {}, page = {}) {
@@ -48,7 +48,7 @@ export default {
       options: {
         params: {filter, page}
       }
-    }
+    };
   }
 
 };

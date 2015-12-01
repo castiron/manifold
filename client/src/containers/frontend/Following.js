@@ -15,10 +15,7 @@ class Following extends Component {
     featuredProjects: PropTypes.array,
     filteredProjects: PropTypes.array,
     projectFilters: PropTypes.object,
-    actions: React.PropTypes.shape({
-      fetchFilteredProjects: React.PropTypes.func.isRequired,
-      setProjectFilters: React.PropTypes.func.isRequired
-    })
+    dispatch: PropTypes.func.isRequired
   };
 
   static contextTypes = {
@@ -26,7 +23,7 @@ class Following extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    let { dispatch } = this.props
+    const { dispatch } = this.props;
     if (prevProps.projectFilters !== this.props.projectFilters) {
       dispatch(fetchFilteredProjects(this.props.projectFilters));
     }

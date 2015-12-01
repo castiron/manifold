@@ -6,5 +6,6 @@ export default function thunkMiddleware({ dispatch, getState }) {
       return next(action);
 
     }
-  }
+  };
 }
+
