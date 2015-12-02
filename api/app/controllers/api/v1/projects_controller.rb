@@ -3,7 +3,7 @@ module Api
     # Projects controller
     class ProjectsController < ApplicationController
       before_action :set_project, only: [:show, :update, :destroy]
-      before_action :authenticate_request!
+      # before_action :authenticate_request!
 
       # GET /projects
       def index

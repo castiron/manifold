@@ -1,4 +1,5 @@
 require 'exceptions'
+require 'auth_token'
 
 # The base application controller
 class ApplicationController < ActionController::API
