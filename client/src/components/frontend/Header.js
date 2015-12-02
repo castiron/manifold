@@ -20,12 +20,12 @@ export default class Header extends Component {
         </Link>
         <nav className="text-nav">
           <ul>
-            <li className="active">
+            <li className={this.props.location.pathname == '/browse/' ? 'active' : ''}>
               <Link to={`/browse/`}>
                 Browse
               </Link>
             </li>
-            <li>
+            <li className={this.props.location.pathname == '/browse/following/' ? 'active' : ''}>
               <Link to={`/browse/following/`}>
                 Following
               </Link>

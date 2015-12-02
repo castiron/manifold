@@ -45,15 +45,24 @@ export function apiClient(endpoint, method, options) {
 
     const cleanedData = camelizeKeys(json.data);
     const entities = {};
-    const results = [];
+    let results = [];
     // TODO: Break these loops out into methods so it's more clear what's happening here.
-    cleanedData.forEach((entity) => {
+    if (Array.isArray(cleanedData)) {
+      cleanedData.forEach((entity) => {
+        if (!entities.hasOwnProperty(entity.type)) {
+          entities[entity.type] = {};
+        }
+        entities[entity.type][entity.id] = entity;
+        results.push(entity.id);
+      });
+    } else {
+      const entity = cleanedData;
       if (!entities.hasOwnProperty(entity.type)) {
         entities[entity.type] = {};
       }
       entities[entity.type][entity.id] = entity;
-      results.push(entity.id);
-    });
+      results = entity.id;
+    }
     if (json.included) {
       const cleanedIncluded = camelizeKeys(json.included);
       cleanedIncluded.forEach((entity) => {
