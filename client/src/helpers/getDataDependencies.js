@@ -9,7 +9,6 @@
  */
 export default (components, getState, dispatch, location, params, deferred) => {
   const methodName = deferred ? 'fetchDataDeferred' : 'fetchData';
-
   return components
     .filter((component) => component && component[methodName]) // 1
     .map((component) => component[methodName]) // 2
