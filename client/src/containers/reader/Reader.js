@@ -9,7 +9,7 @@ import {Link} from 'react-router';
 
 
 function fetchData(getState, dispatch, location, params) {
-  const promises = []
+  const promises = [];
   if (!getState().collections.results.fetchOneText.receivedAt) {
     promises.push(fetchOneText(params.text_id)(dispatch, getState));
   }
@@ -62,7 +62,7 @@ class Reader extends Component {
 
     return (
       <li key={this.counter}>
-        <Link to={`/read/${text.id}/section/${node.id}`}>
+        <Link to={`/read/${text.id}/section/${node.id}#${node.anchor}`}>
           {node.label}
         </Link>
         {children}

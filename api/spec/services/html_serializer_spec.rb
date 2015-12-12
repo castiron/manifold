@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe HtmlToObject do
+RSpec.describe HtmlSerializer do
 
-  let(:converter) { HtmlToObject.new() }
+  let(:serializer) { HtmlSerializer.new() }
 
   it "should wrap top level siblings in a div element" do
     node = "<p>AAA</p><p>BBB</p>"
@@ -13,7 +13,30 @@ RSpec.describe HtmlToObject do
         {node_type: "element", tag: "p", attributes: {}, children: [{node_type: "text", content: "BBB"}]}
       ]
     }
-    expect(converter.convert(node)).to eq(object)
+    expect(serializer.serialize(node)).to eq(object)
+  end
+
+  it "should skip a node it cant handle" do
+    node = "<div>AAA<![CDATA[BBB]]></div>"
+    object = {
+      node_type: "element", tag: "div", attributes: {},
+      children: [
+        { node_type: "text", content: "AAA" }
+      ]
+    }
+    expect(serializer.serialize(node)).to eq(object)
+  end
+
+  it "should skip a blacklisted element" do
+    node = "<div>AAA<script type=\"text/javascript\">alert('test');</script>BBB</div>"
+    object = {
+      node_type: "element", tag: "div", attributes: {},
+      children: [
+        { node_type: "text", content: "AAA" },
+        { node_type: "text", content: "BBB" }
+      ]
+    }
+    expect(serializer.serialize(node)).to eq(object)
   end
 
   it "should convert a simple HTML node into a JSON object" do
@@ -24,7 +47,7 @@ RSpec.describe HtmlToObject do
         { node_type: "text", content: "AAA" }
       ]
     }
-    expect(converter.convert(node)).to eq(object)
+    expect(serializer.serialize(node)).to eq(object)
   end
 
   it "should extract element attributes" do
@@ -32,7 +55,7 @@ RSpec.describe HtmlToObject do
     object = {
       node_type: "element", tag: "div", attributes: {:class => "AAA"}
     }
-    expect(converter.convert(node)).to eq(object)
+    expect(serializer.serialize(node)).to eq(object)
   end
 
   it "should extract comment node content" do
@@ -44,7 +67,7 @@ RSpec.describe HtmlToObject do
         { node_type: "text", content: "CCC" }
       ]
     }
-    expect(converter.convert(node)).to eq(object)
+    expect(serializer.serialize(node)).to eq(object)
   end
 
   it "should correctly handle an element inside a text node" do
@@ -58,7 +81,7 @@ RSpec.describe HtmlToObject do
         { node_type: "text", content: "CCC" }
       ]
     }
-    expect(converter.convert(node)).to eq(object)
+    expect(serializer.serialize(node)).to eq(object)
   end
 
 end

@@ -60,10 +60,21 @@ module Ingestor
           def convert_cont_doc_body(body, source_path)
             resource_map = @text.ingestion_resource_map
             source_map = @text.section_source_map
+            body = HtmlValidator.new.validate(body)
             doc = Nokogiri::HTML(body)
             transform_doc_uris(doc, resource_map,
                                source_map, source_path)
             doc.css("body").children.to_s.strip
+          end
+
+
+          def convert_cont_doc_body_to_json(body)
+            json = HtmlSerializer.new.serialize(body).to_json
+            if json == nil
+              puts body
+              raise exception
+            end
+            return json
           end
 
           private
