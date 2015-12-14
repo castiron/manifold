@@ -33,42 +33,43 @@ class HtmlValidator
     case tag
       when "tr"
         wrap_node_and_siblings(node, "tbody")
+      when "option"
+        wrap_node_and_siblings(node, "select")
     end
     return validated
   end
 
   def wrap_node_and_siblings(node, tag)
+    index = node.parent.children.index(node)
     parent = node.parent
-    node_and_siblings = node.parent.children
+    node_and_siblings = parent.xpath("#{node.name}")
     node_and_siblings.unlink
-    wrapper = parent.add_child("<#{tag}></#{tag}>").first
-    wrapper.children = node_and_siblings
+    if index == 0
+      wrapper = parent.add_child("<#{tag}></#{tag}>").first
+      wrapper.children = node_and_siblings
+    else
+      parent.children[index - 1].after("<#{tag}></#{tag}>")
+      parent.children[index].children = node_and_siblings
+    end
   end
 
   def is_tag_valid_with_parent(tag, parent)
-    case parent
-      when "select"
-        return tag === "option" || tag === "optgroup"
-      when "optgroup"
-        return tag === "option"
-      when "tr"
-        return tag === "th" || tag === "td" || tag === "style" || tag === "script" ||
-          tag === "template"
-      when "tbody", "thead", "tfoot"
-        return tag === "tr" || tag === "style" || tag === "script" || tag === "template"
-      when "colgroup"
-        return tag === "col" || tag === "template"
-      when "table"
-        return tag === "caption" || tag === "colgroup" || tag === "tbody" ||
-          tag === "tfoot" || tag === "thead" || tag === "style" ||
-          tag === "script" || tag === "template"
-    end
     case tag
+      when "option"
+        return parent == "select" || parent == "optgroup"
+      when "optgroup"
+        return parent == "select"
+      when "tr"
+        return parent == "tbody" || parent == "thead" || parent == "tfoot"
+      when "th", "td"
+        return parent == "tr"
+      when "tbody", "thead", "tfoot"
+        return parent == "table"
+      when "col"
+        return parent == "colgroup"
       when "h1", "h2", "h3", "h4", "h5", "h6"
         return parent != 'h1' && parent != 'h2' && parent != 'h3' &&
           parent != 'h4' && parent != 'h5' && parent != 'h6'
-      when "caption", "col", "colgroup", "frame", "head", "tbody", "td", "tfoot", "th", "thead", "tr"
-        return parent == nil
     end
     return true
   end

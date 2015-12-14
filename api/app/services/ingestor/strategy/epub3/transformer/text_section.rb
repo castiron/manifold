@@ -117,7 +117,7 @@ module Ingestor
             abs_package_path = abs_package_path(epub_uri, source_path)
             if section_source_map.key? abs_package_path
               section_id = section_source_map[abs_package_path].id
-              new_path = "/text/#{@text.id}/section/#{section_id}"
+              new_path = "/read/#{@text.id}/section/#{section_id}"
             elsif resource_map.key? abs_package_path
               new_path = URI(resource_map[abs_package_path]).path
             end

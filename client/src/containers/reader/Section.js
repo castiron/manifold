@@ -61,7 +61,8 @@ class Reader extends Component {
   cleanAttributes = (attr) => {
     const map = {
       'class': 'className',
-      'for': 'htmlFor'
+      'for': 'htmlFor',
+      'colspan': 'colSpan'
     };
     const mapped = mapKeys(attr, (attributeValue, attributeName) => {
       return map.hasOwnProperty(attributeName) ? map[attributeName] : attributeName;
