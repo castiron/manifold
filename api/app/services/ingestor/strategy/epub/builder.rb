@@ -167,7 +167,7 @@ module Ingestor
           return unless d.present?
           text.publication_date = d
           debug "services.ingestor.strategy.ePUB.log.set_date",
-               date: text.publication_date
+                date: text.publication_date
         end
 
         def update_rights!(text)
