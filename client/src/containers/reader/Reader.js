@@ -56,7 +56,16 @@ class Reader extends Component {
     return (
       <BodyClass className="reader">
         <div>
-
+          <DocumentMeta {...config.app}/>
+          <Header
+              text={text}
+              tocVisible={this.props.visibility.tocDrawer }
+              toggleTocDrawer={bindActionCreators(() => visibilityToggle('tocDrawer'), this.props.dispatch)}
+              hideTocDrawer={bindActionCreators(() => visibilityHide('tocDrawer'), this.props.dispatch)}
+          />
+          <main>
+            {this.props.children}
+          </main>
         </div>
       </BodyClass>
     );

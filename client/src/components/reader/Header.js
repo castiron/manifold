@@ -18,7 +18,6 @@ export default class Header extends Component {
       'button-index': true,
       'active': this.props.tocVisible,
     });
-    console.log(this.props.text.relationships.project, 'z5');
     return (
         <header className="header-reader">
           <Link to={`/browse/project/${this.props.text.relationships.project.data.id}`} >
