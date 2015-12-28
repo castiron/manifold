@@ -6,6 +6,7 @@ class TextSerializer < ActiveModel::Serializer
   has_one :project
   has_many :text_sections, serializer: TextSectionPartialSerializer
   has_one :toc_section, serializer: TextSectionSerializer
+  belongs_to :category
 end
 
 
