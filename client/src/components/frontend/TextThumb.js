@@ -35,7 +35,7 @@ export default class TextThumb extends Component {
 
   render = () => {
     const text = this.props.text;
-    console.log(text,'txt');
+
     return (
       <div className="asset-thumb">
         <Link to={`/read/${this.props.text.id}`} className="asset-link">

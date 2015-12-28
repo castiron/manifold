@@ -45,7 +45,7 @@ export default class GroupedTexts extends Component {
       <div>
         {textsByCategory.map((group) => {
 
-          if (group.category == null) {
+          if (group.category === null) {
             categoryKey = 0;
             header = null;
           } else {

@@ -71,7 +71,7 @@ export default class ProjectDetail extends Component {
   };
 
   renderMeta = () => {
-    if (!this.state.meta.length > 0) return null
+    if (!this.state.meta.length > 0) return null;
     return (
       <section>
         <div className="container">
@@ -88,8 +88,7 @@ export default class ProjectDetail extends Component {
   };
 
   renderTexts = () => {
-    console.log(this.props.texts,'txts');
-    if (!this.props.texts.length > 0) return null
+    if (!this.props.texts.length > 0) return null;
     return (
       <section>
         <div className="container">

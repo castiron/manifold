@@ -12,9 +12,7 @@ import { visibilityToggle, visibilityHide } from '../../actions/reader/ui/visibi
 
 function fetchData(getState, dispatch, location, params) {
   const promises = [];
-  if (!getState().collections.results.fetchOneText.receivedAt) {
-    promises.push(fetchOneText(params.text_id)(dispatch, getState));
-  }
+  promises.push(fetchOneText(params.text_id)(dispatch, getState));
   return Promise.all(promises);
 }
 
@@ -58,16 +56,7 @@ class Reader extends Component {
     return (
       <BodyClass className="reader">
         <div>
-          <DocumentMeta {...config.app}/>
-          <Header
-              text={text}
-              tocVisible={this.props.visibility.tocDrawer }
-              toggleTocDrawer={bindActionCreators(() => visibilityToggle('tocDrawer'), this.props.dispatch)}
-              hideTocDrawer={bindActionCreators(() => visibilityHide('tocDrawer'), this.props.dispatch)}
-          />
-          <main>
-            {this.props.children}
-          </main>
+
         </div>
       </BodyClass>
     );
