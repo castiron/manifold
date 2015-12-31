@@ -102,7 +102,7 @@ module Ingestor
                                          text, text.text_sections)
           text.text_sections.replace(text_sections.reject(&:nil?))
           text_sections.each do |text_section|
-            if !text_section.valid?
+            unless text_section.valid?
               Helper::Log.log_model_errors(text_section, @logger)
             end
           end
@@ -167,7 +167,7 @@ module Ingestor
           return unless d.present?
           text.publication_date = d
           debug "services.ingestor.strategy.ePUB.log.set_date",
-               date: text.publication_date
+                date: text.publication_date
         end
 
         def update_rights!(text)
